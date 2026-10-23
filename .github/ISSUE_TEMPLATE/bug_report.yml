@@ -1,0 +1,57 @@
+name: Bug Report
+description: Report an issue or unexpected provenance explanation in ComposeWhy
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Warning: NEVER paste real secrets, credentials, or actual passwords!
+        Sanitize all environment values, tokens, and compose files before submitting.
+  - type: input
+    id: version
+    attributes:
+      label: ComposeWhy Version
+      description: Run `composewhy version` and paste the output.
+      placeholder: "composewhy 0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: OS and Docker Compose Version
+      description: Operating system and `docker compose version` output.
+      placeholder: "Ubuntu 22.04, Docker Compose v2.24.0, Python 3.12"
+    validations:
+      required: true
+  - type: textarea
+    id: compose_yaml
+    attributes:
+      label: Sanitized compose.yaml
+      description: Minimal sanitized Compose YAML reproducing the behavior.
+      render: yaml
+    validations:
+      required: true
+  - type: textarea
+    id: env_file
+    attributes:
+      label: Sanitized .env file (if applicable)
+      description: Minimal sanitized env file entries (NO REAL CREDENTIALS).
+      render: bash
+    validations:
+      required: false
+  - type: textarea
+    id: command_and_output
+    attributes:
+      label: Command and Actual Output
+      description: The exact `composewhy explain` command you ran and its output.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What provenance explanation did you expect and why?
+    validations:
+      required: true

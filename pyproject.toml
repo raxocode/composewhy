@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "composewhy"
+version = "0.1.0"
+description = "Explain Docker Compose environment-variable provenance without revealing values"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{name = "RaxoCode", email = "engineering@raxocode.com"}]
+dependencies = ["PyYAML>=6.0,<7"]
+keywords = ["docker", "docker-compose", "dotenv", "configuration", "debugging", "cli"]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0.0",
+]
+
+[project.scripts]
+composewhy = "composewhy.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/raxocode/composewhy"
+Issues = "https://github.com/raxocode/composewhy/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: tests requiring real docker compose CLI",
+]

@@ -1,0 +1,5 @@
+services:
+  web:
+    image: busybox
+    environment:
+      DATABASE_URL: ${DB_URL}

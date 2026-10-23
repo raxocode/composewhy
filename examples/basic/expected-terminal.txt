@@ -1,0 +1,16 @@
+$ composewhy explain --file compose.yaml --env-file .env web DATABASE_URL
+ComposeWhy 0.1.0
+SERVICE   web
+VARIABLE  DATABASE_URL
+STATUS    EXPLAINED
+
+WINNER
+  compose.yaml:5 — service_environment.DATABASE_URL
+  Interpolation input: .env:3 (DB_URL)
+  Value: [REDACTED]
+
+OVERRIDDEN OR UNUSED
+  .env:3 — DB_URL (supplied interpolation for DB_URL)
+
+WHY
+  The service declares DATABASE_URL through environment. The project_env supplied DB_URL during Compose interpolation.
