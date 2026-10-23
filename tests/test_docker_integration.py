@@ -62,7 +62,7 @@ def test_i01_literal_mapping(tmp_path: Path):
     assert res.status == "explained"
     assert res.winner is not None
     assert res.winner.line == 5
-    assert res.winner.kind == "environment"
+    assert res.winner.kind == "service_environment"
 
 
 def test_i02_project_env_interpolation(tmp_path: Path, monkeypatch):
@@ -81,7 +81,7 @@ def test_i02_project_env_interpolation(tmp_path: Path, monkeypatch):
     res = explain_variable(compose, "web", "APP_PORT")
     assert res.status == "explained"
     assert res.winner is not None
-    assert res.winner.kind == "environment"
+    assert res.winner.kind == "service_environment"
     assert res.interpolation_source is not None
     assert ".env:1 (PORT)" in res.interpolation_source
 
@@ -123,10 +123,10 @@ def test_i04_environment_overrides_env_file(tmp_path: Path):
     res = explain_variable(compose, "web", "DEBUG")
     assert res.status == "explained"
     assert res.winner is not None
-    assert res.winner.kind == "environment"
+    assert res.winner.kind == "service_environment"
     assert res.winner.line == 7
     assert len(res.candidates) == 1
-    assert res.candidates[0].source.kind == "env_file"
+    assert res.candidates[0].source.kind == "service_env_file"
     assert res.candidates[0].outcome == "overridden"
 
 
